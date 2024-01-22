@@ -35,6 +35,9 @@ def store(request, category_slug=None):
 
 
 def product_detail(request, category_slug, product_slug):
+    test = Product.objects.get(category__slug=category_slug, slug=product_slug)
+    print(test.id, "abc")
+
     try:
         single_product = Product.objects.get(category__slug=category_slug, slug=product_slug)
     except Exception as e:
@@ -47,6 +50,7 @@ def product_detail(request, category_slug, product_slug):
         'slug': single_product.slug,
         'get_url': single_product.get_url(),
         'stock': single_product.stock,
+        'id': single_product.id,
     }
     context = {
         'single_product': formatted_product
