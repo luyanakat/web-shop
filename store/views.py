@@ -1,6 +1,9 @@
 from django.contrib.humanize.templatetags.humanize import intcomma
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, get_object_or_404
 
+from carts.models import CartItem
+from carts.views import _cart_id
 from category.models import Category
 from store.models import Product
 
@@ -24,6 +27,7 @@ def store(request, category_slug=None):
             'image': product.image,
             'product_name': product.product_name,
             'get_url': product.get_url(),
+            'id': product.id,
         }
         for product in products
     ]
@@ -35,11 +39,11 @@ def store(request, category_slug=None):
 
 
 def product_detail(request, category_slug, product_slug):
-    test = Product.objects.get(category__slug=category_slug, slug=product_slug)
-    print(test.id, "abc")
-
     try:
         single_product = Product.objects.get(category__slug=category_slug, slug=product_slug)
+        in_cart = CartItem.objects.filter(cart__cart_id=_cart_id(request), product=single_product).exists
+        return HttpResponse(in_cart)
+        exit()
     except Exception as e:
         raise e
     formatted_product = {

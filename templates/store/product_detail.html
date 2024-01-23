@@ -63,6 +63,9 @@
 			  <label class="btn btn-light">
 			    <input type="radio" name="radio_color"> XL
 			  </label>
+				<label class="btn btn-light">
+			    <input type="radio" name="radio_color"> {{ single_product.id }}
+			  </label>
 			</div>
 		</div>
 	</div> <!-- row.// -->
@@ -72,6 +75,7 @@
 	{% else %}
 	<a href="{% url 'add_cart' single_product.id %}" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a>
 	{% endif %}
+
 </article> <!-- product-info-aside .// -->
 		</main> <!-- col.// -->
 	</div> <!-- row.// -->

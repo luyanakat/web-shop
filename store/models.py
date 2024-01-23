@@ -8,7 +8,7 @@ class Product(models.Model):
     product_name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255)
     description = models.TextField(max_length=500, blank=True)
-    price = models.FloatField()
+    price = models.IntegerField()
     image = models.ImageField(upload_to='photos/products')
     stock = models.IntegerField(default=0)
     is_available = models.BooleanField(default=True)
