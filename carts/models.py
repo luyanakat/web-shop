@@ -22,7 +22,7 @@ class CartItem(models.Model):
     is_active = models.BooleanField(default=True)
 
     def sub_total(self):
-        return intcomma("{:.0f}".format(self.product.price * self.quantity))
+        return self.product.price * self.quantity
 
     def __unicode__(self):
         return self.product

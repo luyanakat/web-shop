@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'store',
     'category',
     'carts',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
